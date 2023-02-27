@@ -1,0 +1,35 @@
+{{usersList |json}}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">email</th>
+            <th scope="col">firstname</th>
+            <th scope="col">secondname</th>
+            <th scope="col">avathar</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let users of usersList">
+            <td>{{ users.id}}</td>
+            <td> <a href="mailto:{{ users.email}}">{{ users.email}}</a></td>
+            <td>{{ users.first_name}}</td>
+            <td>{{ users.last_name}}</td>
+            <td> <img src="{{ users.avatar}}" alt="Girl in a jacket"></td>
+            <td> <a href="{{ users.avatar}}" target="_blank"> {{ users.first_name}} {{ users.last_name}} </a>
+            </td>
+           
+        </tr>
+  </table>
+  
+  <div class="d-flex justify-content-between p-2">
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshCountries()">
+    </ngb-pagination>
+  
+    <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshCountries()">
+      <option [ngValue]="2">2 items per page</option>
+      <option [ngValue]="4">4 items per page</option>
+      <option [ngValue]="6">6 items per page</option>
+    </select>
+  </div>
